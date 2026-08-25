@@ -1,15 +1,35 @@
-const users = JSON.parse(localStorage.getItem("userList")) || [];
-const urlParams = new URLSearchParams(window.location.search);
+const loginForm = document.getElementById("loginForm");
 
-document.getElementById("loginForm").addEventListener("submit", function (event) {
+loginForm.addEventListener("submit", function (event) {
 
-  
+    event.preventDefault();
 
-    const login = {
-        username: document.getElementById("username").value,
-        password: document.getElementById("passoword").value,        
-    };
+    const roomNumber = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+
+    const users =
+        JSON.parse(localStorage.getItem("userList")) || [];
+
+    const user = users.find(function (user) {
+
+        return user.location === roomNumber &&
+               user.identity === password;
+
+    });
+
+    if (user) {
+
+        localStorage.setItem(
+            "loggedInUser",
+            JSON.stringify(user)
+        );
+
+        window.location.href = "my-requests.html";
+
+    } else {
+
+        alert("Invalid room number or ID/Passport number.");
+
+    }
+
 });
-
-
-   

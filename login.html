@@ -45,12 +45,7 @@
                 <form id = "loginForm "action="index.html" method="post" class="tm-login-form">
                   <div class="form-group">
                     <label for="username">Username</label>
-                    <select
-                        class="custom-select tm-select-accounts"
-                        id="location"
-                        name="location"
-                        required
-                       >
+                    <select id="username" class="form-control" required>
                         <option value="" selected disabled>Select your room</option>
 
                         <option value="4033Dev-Room01">4033Dev-Room01</option>
@@ -79,13 +74,12 @@
                   <div class="form-group mt-3">
                     <label for="password">Password</label>
                     <input
-                      name="password"
                       type="password"
-                      class="form-control validate"
                       id="password"
-                      value=""
+                      class="form-control"
+                      placeholder="Password"
                       required
-                    />
+                    >
                   </div>
                   <div class="form-group mt-4">
                     <button
