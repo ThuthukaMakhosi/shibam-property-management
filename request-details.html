@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Maintenance Request Details</title>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="fontawesome/css/all.min.css">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com" rel="stylesheet">
+    <link rel="stylesheet" href="css/templatemo-style.css">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400..900&display=swap" rel="stylesheet">
+
+</head>
+
+
+<body>
+
+    <div class="container mt-5">
+
+            <div class="row py-4">
+                <div class="col d-flex justify-content-center align-items-center ">
+                    <br>
+                    <h1 class="vogue-style tm-site-title2 mb-0 text-center display-1  ">
+                        SHIBAM Properties
+                    </h1>
+                    
+                </div>
+            </div>
+
+        <h2 class="tm-site-title  mb-4">
+            <i class="fas fa-file-circle-check me-2"></i>
+            Maintenance Request
+        </h2>
+
+
+        <!-- Request details will be inserted here -->
+
+        <div id="requestDetails"></div>
+
+
+        <!-- PDF button -->
+
+        <button
+            id="pdfButton"
+            class="btn btn-primary mt-3">
+
+            <i class="fas fa-file-pdf me-2"></i>
+
+            Download PDF
+
+        </button>
+        <br>
+        <a
+        href="my-requests.html"    
+        class="btn btn-primary mt-3">
+
+            <i class="fas fa-wrench me-2"></i>
+
+            Return to My Requests
+
+        </a>
+
+
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="js/request-details.js"></script>
+
+</body>
+
+</html>
