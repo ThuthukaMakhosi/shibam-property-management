@@ -42,7 +42,7 @@
             </div>
             <div class="row mt-2">
               <div class="col-12">
-                <form id = "loginForm "action="index.html" method="post" class="tm-login-form">
+                <form id = "loginForm" onsubmit="return false;">
                   <div class="form-group">
                     <label for="username">Username</label>
                     <select id="username" class="form-control" required>
@@ -89,10 +89,11 @@
                       Login
                     </button>
                   </div>
-                  <button class="mt-5 btn btn-primary btn-block text-uppercase">
+                  
+                </form>
+                <button class="mt-5 btn btn-primary btn-block text-uppercase">
                     Forgot your password?
                   </button>
-                </form>
               </div>
             </div>
           </div>
@@ -111,6 +112,7 @@
     <script src="js/jquery-3.3.1.min.js"></script>
     <!-- https://jquery.com/download/ -->
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/login.js"></script>
     <!-- https://getbootstrap.com/ -->
   </body>
 </html>
