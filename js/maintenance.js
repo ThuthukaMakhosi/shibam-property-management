@@ -1,7 +1,8 @@
 
-
+const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
 const fileInput = document.getElementById("fileInput");
 const imagePreview = document.getElementById("imagePreview");
+document.getElementById("location").textContent = loggedInUser.location;
 
 fileInput.addEventListener("change", function () {
 
@@ -60,7 +61,7 @@ document.getElementById("maintenanceForm").addEventListener("submit", function (
         id: "MR-" + document.getElementById("location").value + "-" + Date.now(),
         category: document.getElementById("category").value,
         description: document.getElementById("description").value,
-        location: document.getElementById("location").value,
+        location: loggedInUser.location,
         startDate: document.getElementById("startDate").value,
         priority: document.getElementById("priority").value,
         date: new Date().toLocaleDateString(),
