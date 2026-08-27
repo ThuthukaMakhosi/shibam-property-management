@@ -2,9 +2,16 @@ const requestsContainer = document.getElementById("requestsContainer");
 
 const requests = JSON.parse(localStorage.getItem("maintenanceRequests")) || [];
 
+const loggedInUser =
+    JSON.parse(localStorage.getItem("loggedInUser"));
+
+const myRequests = requests.filter(function(request) {
+    return request.location === loggedInUser.location;
+});
 
 
-if (requests.length === 0) {
+
+if (myRequests.length === 0) {
 
     requestsContainer.innerHTML = `
         <p class="text-white">
@@ -15,7 +22,7 @@ if (requests.length === 0) {
 } else {
 
 
-    requests.forEach(function (request) {
+    myRequests.forEach(function (request) {
 
 
         requestsContainer.innerHTML += `
