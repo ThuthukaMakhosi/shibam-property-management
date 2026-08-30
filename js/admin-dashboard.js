@@ -4,6 +4,7 @@ const requests =
     JSON.parse(localStorage.getItem("maintenanceRequests")) || [];
 
 
+document.getElementById("adminName").textContent = "Welcome, " + loggedInAdmin.firstname;
 if (requests.length === 0) {
 
     requestsDashboard.innerHTML = `

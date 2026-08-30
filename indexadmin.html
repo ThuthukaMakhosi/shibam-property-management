@@ -18,7 +18,7 @@
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
     <link href="https://googleapis.com" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400..900&display=swap" rel="stylesheet">
-
+</head>
 <body id="reportsPage">
     <div class="" id="home">
         <nav class="navbar navbar-expand-xl">
@@ -58,7 +58,7 @@
                      
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link " href="login.html">
+                            <a class="nav-link " href="#" onclick="logout()">
                                 <i class="fas fa-sign-in-alt"></i> Logout
                             </a>
                         </li>
@@ -68,6 +68,16 @@
 
         </nav>
         <div class="container">
+
+                
+                  <div class="col d-flex justify-content-center align-items-center py-4 ">
+                    <br>
+                    <h1 class="tm-site-title mb-0 text-center display-1" id = "adminName">
+                         
+                    </h1>
+                    
+                </div>
+
             <div class="row py-4">
                   <div class="col d-flex justify-content-center align-items-center ">
                     <br>
@@ -104,6 +114,7 @@
                         Recent Requests
                     </h1>
                     
+                    
                 </div>
 
                 
@@ -137,9 +148,11 @@
     <script src="js/bootstrap.min.js"></script>
     <!-- https://getbootstrap.com/ -->
     <script src="js/tooplate-scripts.js"></script>
-    <script src="js/admin-dashboard.js"></script>
     <script src="js/count.js"></script>
+    <script src="js/admin-auth.js"></script>
+    <script src="js/admin-dashboard.js"></script>
 
+    <script src="js/logout.js"></script>
     
 </body>
 
