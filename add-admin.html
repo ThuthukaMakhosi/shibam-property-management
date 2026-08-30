@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Add Users</title>
+    <title>Add Admin</title>
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Roboto:400,700"
@@ -19,10 +19,7 @@
     <link rel="stylesheet" href="css/templatemo-style.css">
     <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400..900&display=swap" rel="stylesheet">
 
-    <!--
-	Product Admin CSS Template
-	https://templatemo.com/tm-524-product-admin
-	-->
+    
   </head>
 
   <body>
@@ -83,15 +80,15 @@
     <div class="container tm-mt-big tm-mb-big">
       <div class="row">
         <div class="col-xl-9 col-lg-10 col-md-12 col-sm-12 mx-auto">
-          <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
+          <div class="tm-bg-primary-dark tm-block tm-block-h-auto ">
             <div class="row">
-              <div class="col-12">
-                <h2 class="tm-block-title d-inline-block">Add User</h2>
+              <div class="col-12 ">
+                <h2 class="tm-block-title d-inline-block">Add Adminstrator</h2>
               </div>
             </div>
-            <div class="row tm-edit-product-row">
-              <div class="col-xl-6 col-lg-6 col-md-12">
-                <form action="" id="adduserForm" class="tm-edit-product-form">
+            <div class="row tm-edit-product-row d-flex justify-content-center align-items-center">
+              <div class="col-xl-6 col-lg-6 col-md-12 ">
+            <form action="" id="addadminForm" class="tm-edit-product-form">
 
 
                   <div class="form-group mb-3">
@@ -130,50 +127,14 @@
                       required
                     >
                       <option value="" selected disabled>Select category</option>
-                      <option value="NSFAS">NSFAS</option>
-                      <option value="Bursary">Bursary</option>
-                      <option value="Self Funded">Self Funded</option>
-                      <option value="Other">Other</option>
+                      <option value="owner">Owner</option>
+                      <option value="Res Manager">Res Manager</option>
+                      <option value="Technician">Technician</option>
                       
                     </select>
                   </div>
 
-                  <div class="form-group mb-3">
-                    <label
-                      for="name"
-                      >Location/Room
-                    </label>
-                     <select
-                        class="custom-select tm-select-accounts"
-                        id="location"
-                        name="location"
-                        required
-                       >
-                        <option value="" selected disabled>Select your room</option>
-
-                        <option value="4033Dev-Room01">4033Dev-Room01</option>
-                        <option value="4033Dev-Room02">4033Dev-Room02</option>
-                        <option value="4033Dev-Room03">4033Dev-Room03</option>
-                        <option value="4033Dev-Room04">4033Dev-Room04</option>
-                        <option value="4033Dev-Room05">4033Dev-Room05</option>
-                        <option value="4033Dev-Room06">4033Dev-Room06</option>
-                        <option value="4033Dev-Room07">4033Dev-Room07</option>
-                        <option value="4033Dev-Room08">4033Dev-Room08</option>
-                        <option value="4033Dev-Room09">4033Dev-Room09</option>
-                        <option value="4033Dev-Room10">4033Dev-Room10</option>
-
-                        <option value="4132Dev-Room01">4132Dev-Room01</option>
-                        <option value="4132Dev-Room02">4132Dev-Room02</option>
-                        <option value="4132Dev-Room03">4132Dev-Room03</option>
-                        <option value="4132Dev-Room04">4132Dev-Room04</option>
-                        <option value="4132Dev-Room05">4132Dev-Room05</option>
-                        <option value="4132Dev-Room06">4132Dev-Room06</option>
-                        <option value="4132Dev-Room07">4132Dev-Room07</option>
-                        <option value="4132Dev-Room08">4132Dev-Room08</option>
-                        <option value="4132Dev-Room09">4132Dev-Room09</option>
-                        <option value="4132Dev-Room10">4132Dev-Room10</option>
-                    </select>
-                  </div>
+                
                   <div class="form-group mb-3">
                     <label
                       for="Identity"
@@ -209,24 +170,7 @@
                   
                   
               </div>
-              <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
-                <div  id="imagePreview" class="tm-product-img-dummy mx-auto">
-                  <i
-                    class="fas fa-cloud-upload-alt tm-upload-icon"
-                    onclick="document.getElementById('fileInput').click();"
-                  ></i>
-                </div>
-                <div class="custom-file mt-3 mb-3">
-                  <input id="fileInput" type="file" style="display:none;" />
-                  <input
-                    type="button"
-                    class="btn btn-primary btn-block mx-auto"
-                    value="PHOTO"
-                    required
-                    onclick="document.getElementById('fileInput').click();"
-                  />
-                </div>
-              </div>
+             
               <div class="col-12 py-4">
                 <button type="submit" id="submitButton" class="btn btn-primary btn-block text-uppercase">
                    Add User
@@ -266,11 +210,7 @@
       });
     </script>
     <script src="js/practice.js"></script>
-    <script src="js/admin-auth.js"></script>
-
-    <script src="js/adduser.js"></script>
-    <script src="js/users.js"></script>
-    <script src="js/logout.js"></script>
+    <script src="js/add-admin.js"></script>
 
 
 

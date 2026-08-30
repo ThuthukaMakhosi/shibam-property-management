@@ -17,7 +17,10 @@
     <link rel="stylesheet" href="css/templatemo-style.css">
     <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400..900&display=swap" rel="stylesheet">
 
-   
+    <!--
+	Product Admin CSS Template
+	https://templatemo.com/tm-524-product-admin
+	-->
   </head>
 
   <body>
@@ -36,7 +39,7 @@
           <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
             <div class="row">
               <div class="col-12 text-center">
-                <h2 class="tm-block-title mb-4">Welcome, Resident</h2>
+                <h2 class="tm-block-title mb-4">Welcome, ADMIN</h2>
               </div>
             </div>
             <div class="row mt-2">
@@ -44,31 +47,13 @@
                 <form id = "loginForm" onsubmit="return false;">
                   <div class="form-group">
                     <label for="username">Username</label>
-                    <select id="username" class="form-control" required>
-                        <option value="" selected disabled>Select your room</option>
-
-                        <option value="4033Dev-Room01">4033Dev-Room01</option>
-                        <option value="4033Dev-Room02">4033Dev-Room02</option>
-                        <option value="4033Dev-Room03">4033Dev-Room03</option>
-                        <option value="4033Dev-Room04">4033Dev-Room04</option>
-                        <option value="4033Dev-Room05">4033Dev-Room05</option>
-                        <option value="4033Dev-Room06">4033Dev-Room06</option>
-                        <option value="4033Dev-Room07">4033Dev-Room07</option>
-                        <option value="4033Dev-Room08">4033Dev-Room08</option>
-                        <option value="4033Dev-Room09">4033Dev-Room09</option>
-                        <option value="4033Dev-Room10">4033Dev-Room10</option>
-
-                        <option value="4132Dev-Room01">4132Dev-Room01</option>
-                        <option value="4132Dev-Room02">4132Dev-Room02</option>
-                        <option value="4132Dev-Room03">4132Dev-Room03</option>
-                        <option value="4132Dev-Room04">4132Dev-Room04</option>
-                        <option value="4132Dev-Room05">4132Dev-Room05</option>
-                        <option value="4132Dev-Room06">4132Dev-Room06</option>
-                        <option value="4132Dev-Room07">4132Dev-Room07</option>
-                        <option value="4132Dev-Room08">4132Dev-Room08</option>
-                        <option value="4132Dev-Room09">4132Dev-Room09</option>
-                        <option value="4132Dev-Room10">4132Dev-Room10</option>
-                    </select>
+                    <input
+                      type="username"
+                      id="username"
+                      class="form-control"
+                      placeholder="username e.g. JohnBaker"
+                      required
+                    >
                   </div>
                   <div class="form-group mt-3">
                     <label for="password">Password</label>
@@ -111,7 +96,7 @@
     <script src="js/jquery-3.3.1.min.js"></script>
     <!-- https://jquery.com/download/ -->
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/login.js"></script>
+    <script src="js/admin-login.js"></script>
     <!-- https://getbootstrap.com/ -->
   </body>
 </html>

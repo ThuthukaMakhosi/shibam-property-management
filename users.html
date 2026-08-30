@@ -78,8 +78,15 @@
           <div class="col-12  py-4 px-6">
               <a href="adduser.html"
                 class="btn btn-primary btn-block text-uppercase w-100">
-                  <i class="fas fa-wrench me-2"></i>
+                  <i class="fas fa-user me-2"></i>
                    Add User
+              </a>
+          </div>
+          <div class="col-12  py-4 px-6">
+              <a href="add-admin.html"
+                class="btn btn-primary btn-block text-uppercase w-100">
+                  <i class="fas fa-user-shield me-2"></i>
+                   Add Admin
               </a>
           </div>
 
@@ -88,6 +95,14 @@
               class="btn btn-primary btn-block text-uppercase w-100">
                 <i class="fas fa-list me-2"></i>
                  Users list/Occupants
+            </a>
+          </div>
+
+          <div class="col-12  py-4 px-6">
+            <a href="adminlist.html"
+              class="btn btn-primary btn-block text-uppercase w-100">
+                <i class="fas fa-list me-2"></i>
+                 Administrators
             </a>
           </div>
 
@@ -112,15 +127,12 @@
     <!-- https://jquery.com/download/ -->
     <script src="js/bootstrap.min.js"></script>
     <!-- https://getbootstrap.com/ -->
-    <script>
-      $(function() {
-        $(".tm-product-name").on("click", function() {
-          window.location.href = "edit-product.html";
-        });
-      });
-    </script>
+    
+        <script src="js/admin-auth.js"></script>
 
       <script src="js/adduser.js"></script>
         <script src="js/users.js"></script>
+            <script src="js/logout.js"></script>
+
   </body>
 </html>
