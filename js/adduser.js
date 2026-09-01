@@ -1,5 +1,4 @@
-
-
+console.log("ADDUSER JS RUNNING");
 const fileInput = document.getElementById("fileInput");
 const imagePreview = document.getElementById("imagePreview");
 
@@ -23,6 +22,7 @@ fileInput.addEventListener("change", function () {
 });
 
 document.getElementById("adduserForm").addEventListener("submit", function (event) {
+    console.log("FORM SUBMITTED!");
 
     event.preventDefault();
     const imageFile = fileInput.files[0];
@@ -56,6 +56,7 @@ document.getElementById("adduserForm").addEventListener("submit", function (even
 });
 
     function saveRequest(imageUrl) {
+           console.log("saveRequest is running!");
     const user = {
         id: "SBM-" + document.getElementById("identityNo").value,
         firstname: document.getElementById("firstname").value,
@@ -69,17 +70,28 @@ document.getElementById("adduserForm").addEventListener("submit", function (even
         image: imageUrl
     };
 
-    let users =
-        JSON.parse(localStorage.getItem("userList")) || [];
+    fetch("http://localhost:3000/users", {
+    method: "POST",
 
-    users.push(user);
+    headers: {
+        "Content-Type": "application/json"
+    },
 
-    localStorage.setItem(
-        "userList",
-        JSON.stringify(users)
-    );
+    body: JSON.stringify(user)
+})
+.then(response => response.json())
+.then(data => {
+
+    console.log("User added:", data);
 
     window.location.href = "userslist.html";
+
+})
+.catch(error => {
+
+    console.error("Error adding user:", error);
+
+});
 
 
     }

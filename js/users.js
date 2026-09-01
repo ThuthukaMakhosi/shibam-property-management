@@ -1,6 +1,8 @@
 const userContainer = document.getElementById("userContainer");
 
-const users = JSON.parse(localStorage.getItem("userList")) || [];
+fetch("http://localhost:3000/users")
+    .then(response => response.json())
+    .then(users => {
 
 
 
@@ -72,3 +74,8 @@ if (users.length === 0) {
         `;
     });
 }
+
+ })
+.catch(error => {
+        console.error("Error getting users:", error);
+});
