@@ -37,7 +37,7 @@ if (users.length === 0) {
                         </h4>
 
                         <p class="text-white mb-2">
-                            <i class="fas fa-wrench me-2"></i>
+                            <i class="fas fa-money-check-alt me-2"></i>
                             ${user.category}
                         </p>
 
@@ -61,6 +61,10 @@ if (users.length === 0) {
                             Date: ${user.date}
                         </p>
 
+                        <button onclick="editUser('${user.id}')" class="btn btn-primary mt-3">
+                            Edit
+                        </button>
+
                         
 
                     </div>
@@ -79,3 +83,7 @@ if (users.length === 0) {
 .catch(error => {
         console.error("Error getting users:", error);
 });
+
+function editUser(id) {
+    window.location.href = `adduser.html?id=${id}`;
+}
