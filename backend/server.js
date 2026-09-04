@@ -57,7 +57,9 @@ app.post("/users", (req, res) => {
             newUser.image
         );
 
-        res.status(201).json(newUser);
+        res.status(201).json({
+    message: "User created successfully"
+});
 
     } catch (error) {
 
@@ -68,6 +70,18 @@ app.post("/users", (req, res) => {
         });
 
     }
+
+});
+
+app.get("/users/:id", (req, res) => {
+
+    const userId = req.params.id;
+
+    const user = db.prepare(
+        "SELECT * FROM users WHERE id = ?"
+    ).get(userId);
+
+    res.json(user);
 
 });
 
@@ -98,6 +112,10 @@ app.put("/users/:id", (req, res) => {
         updatedUser.image,
         userId
     );
+
+     res.json({
+        message: "User updated successfully"
+    });
 
 });
 
