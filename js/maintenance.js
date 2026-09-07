@@ -58,29 +58,36 @@ document.getElementById("maintenanceForm").addEventListener("submit", function (
 
     function saveRequest(imageUrl) {
     const request = {
-        id: "MR-" + document.getElementById("location").value + "-" + Date.now(),
+        id: "MR-" + loggedInUser.location + "-" + Date.now(),
+        user_id: loggedInUser.id,
         category: document.getElementById("category").value,
         description: document.getElementById("description").value,
         location: loggedInUser.location,
-        startDate: document.getElementById("startDate").value,
+        start_date: document.getElementById("startDate").value,
         priority: document.getElementById("priority").value,
         date: new Date().toLocaleDateString(),
         status: "Submitted",
         image: imageUrl
     };
 
-    let requests =
-        JSON.parse(localStorage.getItem("maintenanceRequests")) || [];
+    fetch("http://localhost:3000/requests", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(request)
+    })
+    .then(response => response.json())
+    .then(data => {
 
-    requests.push(request);
+        console.log(data);
+        window.location.href = "my-requests.html";
 
-    localStorage.setItem(
-        "maintenanceRequests",
-        JSON.stringify(requests)
-    );
+    })
+    .catch(error => {
 
-    window.location.href = "my-requests.html";
+        console.error("Error saving request:", error);
+        alert("Failed to submit maintenance request.");
 
-
-    }
-
+    });
+}

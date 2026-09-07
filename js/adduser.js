@@ -1,4 +1,40 @@
 
+let existingUser = null;
+const params = new URLSearchParams(window.location.search);
+const userId = params.get("id");
+
+const submitButton = document.getElementById("submitButton");
+
+if (userId) {
+    submitButton.textContent = "Update User";
+}
+
+
+
+
+if (userId) {
+    
+
+    fetch(`http://localhost:3000/users/${userId}`)
+        .then(response => response.json())
+        .then(user => {
+
+            existingUser = user;
+
+            document.getElementById("firstname").value = user.firstname;
+            document.getElementById("lastname").value = user.lastname;
+            document.getElementById("category").value = user.category;
+            document.getElementById("identityNo").value = user.identity;
+            document.getElementById("gender").value = user.gender;
+            document.getElementById("location").value = user.location;
+
+        })
+        .catch(error => {
+            console.error("Error fetching user:", error);
+        });
+
+}
+
 
 const fileInput = document.getElementById("fileInput");
 const imagePreview = document.getElementById("imagePreview");
@@ -23,6 +59,7 @@ fileInput.addEventListener("change", function () {
 });
 
 document.getElementById("adduserForm").addEventListener("submit", function (event) {
+    console.log("FORM SUBMITTED!");
 
     event.preventDefault();
     const imageFile = fileInput.files[0];
@@ -49,40 +86,47 @@ document.getElementById("adduserForm").addEventListener("submit", function (even
     } else {
 
         // No image selected
-        saveRequest("");
+        saveRequest(existingUser ? existingUser.image : "");
 
     }
 
 });
 
     function saveRequest(imageUrl) {
+
     const user = {
-        id: "SBM-" + document.getElementById("identityNo").value,
+        id: userId || "SBM-" + document.getElementById("identityNo").value,
         firstname: document.getElementById("firstname").value,
         lastname: document.getElementById("lastname").value,
-
         category: document.getElementById("category").value,
         identity: document.getElementById("identityNo").value,
         gender: document.getElementById("gender").value,
         location: document.getElementById("location").value,
-        date: new Date().toLocaleDateString(),
+        date: existingUser ? existingUser.date : new Date().toLocaleDateString(),
         image: imageUrl
     };
 
-    let users =
-        JSON.parse(localStorage.getItem("userList")) || [];
+    const method = userId ? "PUT" : "POST";
 
-    users.push(user);
+    const url = userId
+        ? `http://localhost:3000/users/${userId}`
+        : "http://localhost:3000/users";
 
-    localStorage.setItem(
-        "userList",
-        JSON.stringify(users)
-    );
+    fetch(url, {
+        method: method,
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(user)
+    })
 
-    window.location.href = "userslist.html";
+   .then(data => {
+        console.log("REDIRECT CODE REACHED");
+        window.location.href = "userslist.html"
+        })
 
-
-    }
-
-
-
+    .catch(error => {
+        console.error("ERROR:", error);
+        alert("ERROR — check console");
+    });
+}

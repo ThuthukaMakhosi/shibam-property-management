@@ -7,29 +7,39 @@ loginForm.addEventListener("submit", function (event) {
     const roomNumber = document.getElementById("username").value;
     const password = document.getElementById("password").value;
 
-    const users =
-        JSON.parse(localStorage.getItem("userList")) || [];
+    fetch("http://localhost:3000/users")
+        .then(response => response.json())
+        .then(users => {
 
-    const user = users.find(function (user) {
+            const user = users.find(function (user) {
 
-        return user.location === roomNumber &&
-               user.identity === password;
+                return user.location === roomNumber &&
+                       user.identity === password;
 
-    });
+            });
 
-    if (user) {
+            if (user) {
 
-        localStorage.setItem(
-            "loggedInUser",
-            JSON.stringify(user)
-        );
+                localStorage.setItem(
+                    "loggedInUser",
+                    JSON.stringify(user)
+                );
 
-        window.location.href = "my-requests.html";
+                window.location.href = "my-requests.html";
 
-    } else {
+            } else {
 
-        alert("Invalid room number or ID/Passport number.");
+                alert("Invalid room number or ID/Passport number.");
 
-    }
+            }
+
+        })
+        .catch(error => {
+
+            console.error("LOGIN ERROR:", error);
+
+            alert("Unable to connect to the server.");
+
+        });
 
 });

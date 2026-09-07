@@ -1,24 +1,33 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-    /* User count */
+    fetch("http://localhost:3000/users/count")
+        .then(response => response.json())
+        .then(data => {
 
-    const users =
-        JSON.parse(localStorage.getItem("userList")) || [];
+            const totalUsers =
+                document.getElementById("totalUsers");
 
-    const totalUsers =
-        document.getElementById("totalUsers");
+            totalUsers.textContent = data.count;
 
-    totalUsers.textContent = users.length;
+        })
+        .catch(error => {
+            console.error("Error fetching user count:", error);
+        });
 
 
-    /* Request count */
 
-    const requests =
-        JSON.parse(localStorage.getItem("maintenanceRequests")) || [];
+ fetch("http://localhost:3000/requests/count")
+        .then(response => response.json())
+        .then(data => {
 
-    const totalRequests =
-        document.getElementById("totalRequests");
+            const totalRequests =
+                document.getElementById("totalRequests");
 
-    totalRequests.textContent = requests.length;
+            totalRequests.textContent = data.count;
+
+        })
+        .catch(error => {
+            console.error("Error fetching request count:", error);
+        });
 
 });

@@ -1,6 +1,8 @@
 const userContainer = document.getElementById("userContainer");
 
-const users = JSON.parse(localStorage.getItem("userList")) || [];
+fetch("http://localhost:3000/users")
+    .then(response => response.json())
+    .then(users => {
 
 
 
@@ -35,7 +37,7 @@ if (users.length === 0) {
                         </h4>
 
                         <p class="text-white mb-2">
-                            <i class="fas fa-wrench me-2"></i>
+                            <i class="fas fa-money-check-alt me-2"></i>
                             ${user.category}
                         </p>
 
@@ -59,6 +61,14 @@ if (users.length === 0) {
                             Date: ${user.date}
                         </p>
 
+                        <button onclick="editUser('${user.id}')" class="btn btn-primary mt-3">
+                            Edit
+                        </button>
+
+                        <button onclick="deleteUser('${user.id}')" class="btn btn-primary mt-3">
+                            Delete User
+                        </button>
+
                         
 
                     </div>
@@ -70,5 +80,34 @@ if (users.length === 0) {
             </div>
 
         `;
+    });
+}
+
+ })
+.catch(error => {
+        console.error("Error getting users:", error);
+});
+
+function editUser(id) {
+    window.location.href = `adduser.html?id=${id}`;
+}
+
+function deleteUser(id) {
+    const confirmed = confirm("Are you sure you want to delete this user?");
+
+    if (!confirmed) {
+        return;
+    }
+
+    fetch(`http://localhost:3000/users/${id}`, {
+        method: "DELETE"
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data.message);
+        loadUsers();
+    })
+    .catch(error => {
+        console.error("DELETE ERROR:", error);
     });
 }
