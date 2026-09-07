@@ -65,6 +65,10 @@ if (users.length === 0) {
                             Edit
                         </button>
 
+                        <button onclick="deleteUser('${user.id}')" class="btn btn-primary mt-3">
+                            Delete User
+                        </button>
+
                         
 
                     </div>
@@ -86,4 +90,24 @@ if (users.length === 0) {
 
 function editUser(id) {
     window.location.href = `adduser.html?id=${id}`;
+}
+
+function deleteUser(id) {
+    const confirmed = confirm("Are you sure you want to delete this user?");
+
+    if (!confirmed) {
+        return;
+    }
+
+    fetch(`http://localhost:3000/users/${id}`, {
+        method: "DELETE"
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data.message);
+        loadUsers();
+    })
+    .catch(error => {
+        console.error("DELETE ERROR:", error);
+    });
 }
