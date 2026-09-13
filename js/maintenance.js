@@ -70,7 +70,7 @@ document.getElementById("maintenanceForm").addEventListener("submit", function (
         image: imageUrl
     };
 
-    fetch("http://localhost:3000/requests", {
+    fetch(`${API_URL}/requests`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

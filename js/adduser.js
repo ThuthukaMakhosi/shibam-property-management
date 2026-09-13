@@ -15,7 +15,7 @@ if (userId) {
 if (userId) {
     
 
-    fetch(`http://localhost:3000/users/${userId}`)
+    fetch(`${API_URL}/users/${userId}`)
         .then(response => response.json())
         .then(user => {
 
@@ -109,8 +109,8 @@ document.getElementById("adduserForm").addEventListener("submit", function (even
     const method = userId ? "PUT" : "POST";
 
     const url = userId
-        ? `http://localhost:3000/users/${userId}`
-        : "http://localhost:3000/users";
+        ? `${API_URL}/users/${userId}`
+        : `${API_URL}/users`;
 
     fetch(url, {
         method: method,

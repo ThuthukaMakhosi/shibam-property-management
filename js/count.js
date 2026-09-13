@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-    fetch("http://localhost:3000/users/count")
+    fetch(`${API_URL}/users/count`)
         .then(response => response.json())
         .then(data => {
 
@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
- fetch("http://localhost:3000/requests/count")
+ fetch(`${API_URL}/requests/count`)
         .then(response => response.json())
         .then(data => {
 

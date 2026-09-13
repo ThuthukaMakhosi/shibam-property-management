@@ -4,7 +4,7 @@ const loggedInUser =
 const requestsContainer =
     document.getElementById("requestsContainer");
 
-fetch(`http://localhost:3000/requests/${loggedInUser.id}`)
+fetch(`${API_URL}/requests/${loggedInUser.id}`)
     .then(response => response.json())
     .then(myRequests => {
 
@@ -123,7 +123,7 @@ requestsContainer.addEventListener("click", function (event) {
 
 function markAsDone(requestId) {
 
-    fetch(`http://localhost:3000/requests/${requestId}`, {
+    fetch(`${API_URL}/requests/${requestId}`, {
         method: "DELETE"
     })
     .then(response => response.json())

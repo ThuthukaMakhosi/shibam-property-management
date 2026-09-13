@@ -7,7 +7,7 @@ loginForm.addEventListener("submit", function (event) {
     const roomNumber = document.getElementById("username").value;
     const password = document.getElementById("password").value;
 
-    fetch("http://localhost:3000/users")
+    fetch(`${API_URL}/users`)
         .then(response => response.json())
         .then(users => {
 

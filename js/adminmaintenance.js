@@ -1,10 +1,9 @@
 const requestsContainer = document.getElementById("requestsContainer");
 
-const requests = JSON.parse(localStorage.getItem("maintenanceRequests")) || [];
 
 
 
-
+fetch(`${API_URL}/requests`) .then(response => response.json()) .then(requests => {
 
 if (requests.length === 0) {
 
@@ -60,7 +59,7 @@ if (requests.length === 0) {
 
                         <p class="text-white mb-2">
                             <i class="fas fa-calendar me-2"></i>
-                            Date problem started: ${request.startDate}
+                            Date problem started: ${request.start_date}
                         </p>
 
                         <p class="text-white mb-2">
@@ -78,13 +77,13 @@ if (requests.length === 0) {
 
                         <br>
 
-                        <a
+                       <!-- <a
                             href="request-details.html?id=${request.id}"
                             class="btn btn-primary text-uppercase mt-2"
                         >
                             <i class="fas fa-eye me-2"></i>
                             View Details
-                        </a>
+                        </a>-->
 
                         <button  class="btn btn-primary text-uppercase mark-done"
                                 data-request-id="${request.id}">
@@ -101,6 +100,11 @@ if (requests.length === 0) {
         `;
     });
 }
+}) 
+.catch(error => { 
+    console.error("ERROR LOADING REQUESTS:", error); 
+});
+
 
 /* LISTEN FOR MARK AS DONE */
 
@@ -118,33 +122,16 @@ requestsContainer.addEventListener("click", function (event) {
 
 });
 
-function markAsDone(requestId) {
+function markAsDone(requestId) { 
+    fetch(`${API_URL}/requests/${requestId}`, { 
+        
+        method: "DELETE" }) 
+        .then(response => response.json()) 
+        .then(data => { 
 
-    let requests =
-        JSON.parse(localStorage.getItem("maintenanceRequests")) || [];
-
-
-    const requestIndex =
-        requests.findIndex(function (request) {
-
-            return request.id === requestId;
-
-        });
-
-
-    if (requestIndex !== -1) {
-
-        requests.splice(requestIndex, 1);
-
-
-        localStorage.setItem(
-            "maintenanceRequests",
-            JSON.stringify(requests)
-        );
-
-
-        location.reload();
-
-    }
-
-}
+            console.log(data); 
+            location.reload(); 
+        }) 
+        .catch(error => { 
+            console.error("ERROR DELETING REQUEST:", error); });
+         }

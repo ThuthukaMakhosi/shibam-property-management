@@ -253,6 +253,23 @@ app.delete("/requests/:id", (req, res) => {
     }
 });
 
+app.get("/requests", (req, res) => {
+    try {
+        const requests = db.prepare(`
+            SELECT *
+            FROM maintenance_requests
+        `).all();
+
+        res.json(requests);
+
+    } catch (error) {
+        console.error("DATABASE ERROR:", error);
+        res.status(500).json({
+            error: error.message
+        });
+    }
+});
+
 app.listen(3000, () => {
     console.log("SHIBAM server running on port 3000");
 });
