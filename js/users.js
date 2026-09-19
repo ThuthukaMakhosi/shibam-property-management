@@ -1,6 +1,6 @@
 const userContainer = document.getElementById("userContainer");
 
-fetch("http://localhost:3000/users")
+fetch(`${API_URL}/users`)
     .then(response => response.json())
     .then(users => {
 
@@ -99,7 +99,7 @@ function deleteUser(id) {
         return;
     }
 
-    fetch(`http://localhost:3000/users/${id}`, {
+    fetch(`${API_URL}/users/${id}`, {
         method: "DELETE"
     })
     .then(response => response.json())

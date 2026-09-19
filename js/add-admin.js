@@ -7,33 +7,64 @@
 
 });
     
-    function saveAdmin() {
+   function saveAdmin() {
+
     const user = {
-        id: "ADMIN-" + document.getElementById("firstname").value + document.getElementById("lastname").value,
+
+        id: "ADMIN-" +
+            document.getElementById("firstname").value +
+            document.getElementById("lastname").value,
+
         firstname: document.getElementById("firstname").value,
+
         lastname: document.getElementById("lastname").value,
 
         category: document.getElementById("category").value,
+
         password: document.getElementById("identityNo").value,
+
         gender: document.getElementById("gender").value,
-        username: document.getElementById("firstname").value + document.getElementById("lastname").value,
-        
+
+        username: document.getElementById("firstname").value + document.getElementById("lastname").value
+
     };
 
-    let users =
-        JSON.parse(localStorage.getItem("adminList")) || [];
+    fetch(`${API_URL}/admins`, {
 
-    users.push(user);
+        method: "POST",
 
-    localStorage.setItem(
-        "adminList",
-        JSON.stringify(users)
-    );
+        headers: {
+            "Content-Type": "application/json"
+        },
 
-    window.location.href = "admin-login.html";
+        body: JSON.stringify(user)
 
+    })
 
-    }
+    .then(response => {
 
+        if (!response.ok) {
+            throw new Error("Failed to add admin.");
+        }
 
+        return response.json();
 
+    })
+
+    .then(data => {
+
+        console.log(data);
+
+        window.location.href = "adminlist.html";
+
+    })
+
+    .catch(error => {
+
+        console.error("ADD ADMIN ERROR:", error);
+
+        alert(error.message);
+
+    });
+
+}
