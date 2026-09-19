@@ -91,6 +91,68 @@ app.post("/users", (req, res) => {
 
 });
 
+app.post("/admins", (req, res) => {
+
+    const {
+        id,
+        firstname,
+        lastname,
+        category,
+        password,
+        gender,
+        username
+    } = req.body;
+
+    try {
+
+        const insertAdmin = db.prepare(`
+            INSERT INTO admins (
+                id,
+                firstname,
+                lastname,
+                category,
+                password,
+                gender,
+                username
+            )
+            VALUES (?, ?, ?, ?, ?, ?, ?)
+        `);
+
+        insertAdmin.run(
+            id,
+            firstname,
+            lastname,
+            category,
+            password,
+            gender,
+            username
+        );
+
+        res.status(201).json({
+            message: "Admin added successfully."
+        });
+
+    } catch (error) {
+
+        console.error("ADD ADMIN ERROR:", error);
+
+        res.status(500).json({
+            error: error.message
+        });
+    }
+});
+
+app.get("/admins", (req, res) => {
+
+    const admins = db.prepare(`
+        SELECT *
+        FROM admins
+    `).all();
+
+    res.json(admins);
+
+});
+
 app.get("/users/:id", (req, res) => {
 
     const userId = req.params.id;
@@ -136,6 +198,9 @@ app.put("/users/:id", (req, res) => {
     });
 
 });
+
+
+
 
 app.delete("/users/:id", (req, res) => {
     const userId = req.params.id;
@@ -267,6 +332,70 @@ app.get("/requests", (req, res) => {
         res.status(500).json({
             error: error.message
         });
+    }
+});
+
+
+app.post("/login", (req, res) => {
+
+    const { location, identity } = req.body;
+
+    try {
+
+        const user = db.prepare(`
+            SELECT *
+            FROM users
+            WHERE location = ? AND identity = ?
+        `).get(location, identity);
+
+        if (!user) {
+            return res.status(401).json({
+                error: "Invalid room number or ID/Passport number."
+            });
+        }
+
+        res.json(user);
+
+    } catch (error) {
+
+        console.error("LOGIN ERROR:", error);
+
+        res.status(500).json({
+            error: error.message
+        });
+    }
+});
+
+app.post("/admin-login", (req, res) => {
+
+    const { username, password } = req.body;
+
+    try {
+
+        const admin = db.prepare(`
+            SELECT *
+            FROM admins
+            WHERE username = ? AND password = ?
+        `).get(username, password);
+
+        if (!admin) {
+
+            return res.status(401).json({
+                error: "Invalid username or password."
+            });
+
+        }
+
+        res.json(admin);
+
+    } catch (error) {
+
+        console.error("ADMIN LOGIN ERROR:", error);
+
+        res.status(500).json({
+            error: error.message
+        });
+
     }
 });
 

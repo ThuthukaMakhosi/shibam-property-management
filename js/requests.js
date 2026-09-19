@@ -1,6 +1,8 @@
 const loggedInUser =
     JSON.parse(localStorage.getItem("loggedInUser"));
 
+
+
 const requestsContainer =
     document.getElementById("requestsContainer");
 

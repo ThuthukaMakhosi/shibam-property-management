@@ -37,6 +37,19 @@ db.prepare(`
     )
 `).run();
 
+db.prepare(`
+    CREATE TABLE IF NOT EXISTS admins (
+        id TEXT PRIMARY KEY,
+        firstname TEXT NOT NULL,
+        lastname TEXT NOT NULL,
+        category TEXT NOT NULL,
+        password TEXT NOT NULL,
+        gender TEXT NOT NULL,
+        username TEXT NOT NULL
+    )
+`).run();
+
+console.log("Admins table ready!");
 
 console.log("Users table ready!");
 

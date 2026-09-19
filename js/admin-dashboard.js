@@ -1,4 +1,5 @@
 const requestsDashboard = document.getElementById("requestsDashboard");
+document.getElementById("adminName").textContent ="Welcome, "+ loggedInAdmin.firstname + " " + loggedInAdmin.lastname;
 
 fetch(`${API_URL}/requests`) .then(response => response.json()) .then(requests => {
 

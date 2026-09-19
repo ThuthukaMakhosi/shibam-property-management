@@ -1,3 +1,4 @@
+
 const loginForm = document.getElementById("loginForm");
 
 loginForm.addEventListener("submit", function (event) {
@@ -7,39 +8,45 @@ loginForm.addEventListener("submit", function (event) {
     const roomNumber = document.getElementById("username").value;
     const password = document.getElementById("password").value;
 
-    fetch(`${API_URL}/users`)
-        .then(response => response.json())
-        .then(users => {
+    fetch(`${API_URL}/login`, {
+        method: "POST",
 
-            const user = users.find(function (user) {
+        headers: {
+            "Content-Type": "application/json"
+        },
 
-                return user.location === roomNumber &&
-                       user.identity === password;
-
-            });
-
-            if (user) {
-
-                localStorage.setItem(
-                    "loggedInUser",
-                    JSON.stringify(user)
-                );
-
-                window.location.href = "my-requests.html";
-
-            } else {
-
-                alert("Invalid room number or ID/Passport number.");
-
-            }
-
+        body: JSON.stringify({
+            location: roomNumber,
+            identity: password
         })
-        .catch(error => {
+    })
 
-            console.error("LOGIN ERROR:", error);
+    .then(response => {
 
-            alert("Unable to connect to the server.");
+        if (!response.ok) {
+            throw new Error("Invalid room number or ID/Passport number.");
+        }
 
-        });
+        return response.json();
+    })
+
+    .then(user => {
+
+        localStorage.setItem(
+            "loggedInUser",
+            JSON.stringify(user)
+        );
+
+        window.location.href = "my-requests.html";
+
+    })
+
+    .catch(error => {
+
+        console.error("LOGIN ERROR:", error);
+
+        alert(error.message);
+    });
 
 });
+

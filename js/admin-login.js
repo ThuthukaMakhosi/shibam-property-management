@@ -1,23 +1,42 @@
 const loginForm = document.getElementById("loginForm");
 
-loginForm.addEventListener("submit", function (event) {
+loginForm.addEventListener("submit", function(event) {
 
     event.preventDefault();
 
     const adminidentity = document.getElementById("username").value;
+
     const password = document.getElementById("password").value;
 
-    const admins =
-        JSON.parse(localStorage.getItem("adminList")) || [];
 
-    const admin = admins.find(function (admin) {
+    fetch(`${API_URL}/admin-login`, {
 
-        return admin.username === adminidentity &&
-               admin.password === password;
+        method: "POST",
 
-    });
+        headers: {
+            "Content-Type": "application/json"
+        },
 
-    if (admin) {
+        body: JSON.stringify({
+
+            username: adminidentity,
+            password: password
+
+        })
+
+    })
+
+    .then(response => {
+
+        if (!response.ok) {
+            throw new Error("Invalid password/username.");
+        }
+
+        return response.json();
+
+    })
+
+    .then(admin => {
 
         localStorage.setItem(
             "loggedInAdmin",
@@ -26,10 +45,14 @@ loginForm.addEventListener("submit", function (event) {
 
         window.location.href = "indexadmin.html";
 
-    } else {
+    })
 
-        alert("Invalid password/username.");
+    .catch(error => {
 
-    }
+        console.error("ADMIN LOGIN ERROR:", error);
+
+        alert(error.message);
+
+    });
 
 });
