@@ -399,6 +399,34 @@ app.post("/admin-login", (req, res) => {
     }
 });
 
+app.post("/setup-admin", (req, res) => {
+    const { id, firstname, lastname, category, password, gender, username } = req.body;
+
+    try {
+        const existingAdmin = db.prepare("SELECT COUNT(*) AS count FROM admins").get();
+
+        if (existingAdmin.count > 0) {
+            return res.status(403).json({
+                error: "An admin already exists."
+            });
+        }
+
+        db.prepare(`
+            INSERT INTO admins (
+                id, firstname, lastname, category, password, gender, username
+            )
+            VALUES (?, ?, ?, ?, ?, ?, ?)
+        `).run(id, firstname, lastname, category, password, gender, username);
+
+        res.status(201).json({
+            message: "Initial admin created successfully."
+        });
+    } catch (error) {
+        console.error("SETUP ADMIN ERROR:", error);
+        res.status(500).json({ error: error.message });
+    }
+});
+
 app.listen(3000, () => {
     console.log("SHIBAM server running on port 3000");
 });
